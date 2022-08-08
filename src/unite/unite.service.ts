@@ -30,4 +30,8 @@ export class UniteService {
   async deleteUnite(id: number) {
     return await this.uniteRepository.delete(id);
   }
+
+  async findByQuery(query: any) {
+    return this.uniteRepository.find({ where: query });
+  }
 }

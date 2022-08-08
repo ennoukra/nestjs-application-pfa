@@ -17,7 +17,7 @@ export class UserService {
     return this.userRepository.save(createUserDto);
   }
 
-  findUser(id: number) {
+  findUserById(id: number) {
     return this.userRepository.findOneById(id);
   }
   // get all the users in the  database
@@ -38,5 +38,17 @@ export class UserService {
   // find user by login
   findOne(data: number | any) {
     return this.userRepository.findOne(data);
+  }
+
+  findUser(input: string) {
+    return this.userRepository
+      .createQueryBuilder()
+      .where('user.login=: login', {
+        login: input,
+      });
+  }
+
+  findUserQuery(query: any) {
+    return this.userRepository.find({ where: query });
   }
 }

@@ -3,10 +3,10 @@ import { Unique } from 'typeorm';
 
 export class CreateUserDto {
   @IsString()
-  Nom: string;
+  nom: string;
 
   @IsString()
-  Prenom: string;
+  prenom: string;
 
   @IsString()
   login: string;

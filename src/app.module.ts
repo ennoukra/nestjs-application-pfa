@@ -13,11 +13,16 @@ import { ParcelleModule } from './parcelle/parcelle.module';
 import { UserModule } from './user/user.module';
 import { CampagneModule } from './campagne/campagne.module';
 import { BlocModule } from './bloc/bloc.module';
-import { AuthModule } from './auth/auth/auth.module';
+import { AuthModule } from './auth/auth.module';
 import { AuthService } from './auth/auth.service';
+import { APP_INTERCEPTOR } from '@nestjs/core';
+import { AuthInterceptor } from './interceptor/auth.interceptor';
+import { ConfigModule } from '@nestjs/config';
+import { OperationsModule } from './operations/operations.module';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({ envFilePath: `${process.env.NODE_ENV}.env` }),
     TypeOrmModule.forRoot(typeOrmConfig),
     ProducteurModule,
     VarieteModule,
@@ -29,9 +34,14 @@ import { AuthService } from './auth/auth.service';
     CampagneModule,
     BlocModule,
     AuthModule,
+    OperationsModule,
   ],
 
   controllers: [AppController],
-  providers: [AppService, User, AuthService],
+  providers: [
+    AppService,
+    User,
+    { provide: APP_INTERCEPTOR, useClass: AuthInterceptor },
+  ],
 })
 export class AppModule {}

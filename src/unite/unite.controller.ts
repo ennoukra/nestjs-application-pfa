@@ -6,6 +6,7 @@ import {
   Param,
   ParseIntPipe,
   Post,
+  Query,
 } from '@nestjs/common';
 import { Unite } from 'src/entities/Unite.entity';
 import { CreateUniteDto } from './dto/createUniteDto';
@@ -24,6 +25,12 @@ export class UniteController {
   @Post('create')
   async ceateUnite(@Body() createUniteDto: CreateUniteDto) {
     return await this.uniteService.createUnite(createUniteDto);
+  }
+
+  @Get('search')
+  async findUnites(@Query() query) {
+    console.log(query);
+    return this.uniteService.findByQuery(query);
   }
 
   @Get(':id')
