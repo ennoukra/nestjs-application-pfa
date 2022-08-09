@@ -8,6 +8,7 @@ import {
 import { Bloc } from './Bloc.entity';
 import { Employee } from './employee.entity';
 import { Producteur } from './Producteur.entity';
+import { Section } from './Section.entity';
 
 @Entity()
 export class Unite {
@@ -30,4 +31,7 @@ export class Unite {
 
   @OneToMany(() => Employee, (employee) => employee.unite)
   employees: Employee[];
+
+  @OneToMany(() => Section, (sections) => sections.unite)
+  sections: Section[];
 }

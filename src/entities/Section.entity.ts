@@ -8,6 +8,7 @@ import {
 import { MainOeuvre } from './main-d-oeuvre.entity';
 import { Operation } from './operation.entity';
 import { SectionDetail } from './SectionDetail.entity';
+import { Unite } from './Unite.entity';
 
 @Entity()
 export class Section {
@@ -31,4 +32,7 @@ export class Section {
 
   @OneToMany(() => Operation, (operation) => operation.section)
   operations: Operation[];
+
+  @ManyToOne(() => Unite, (unite) => unite.sections)
+  unite: Unite;
 }

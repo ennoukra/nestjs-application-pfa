@@ -1,4 +1,11 @@
-import { Controller, Get, UseGuards, Request, Body } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  UseGuards,
+  Request,
+  Body,
+  Post,
+} from '@nestjs/common';
 
 import { JwtAuthGuard } from 'src/auth/guard/jwtAuth.guard';
 import { OperationsService } from './operations.service';
@@ -13,5 +20,13 @@ export class OperationsController {
     console.log(req.user);
     console.log(req.user.id + ' in the operations controller!');
     return this.operationService.getAllOperations(req.user);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Post('createOperation')
+  async createOperation(@Body() data) {
+    data.operation.creatPar = data.user.id;
+    console.log(data.operation);
+    this.operationService.create(data.operation);
   }
 }

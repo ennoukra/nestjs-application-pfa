@@ -16,4 +16,8 @@ export class OperationsService {
       where: { creatPar: { id: user.id } },
     });
   }
+
+  create(operation) {
+    return this.operationRepository.save(operation);
+  }
 }
