@@ -7,8 +7,7 @@ import { User } from './entities/User.entity';
 import { ProducteurModule } from './producteur/producteur.module';
 import { VarieteModule } from './variete/variete.module';
 import { UniteModule } from './unite/unite.module';
-import { SectioinDetailModule } from './sectioin-detail/sectioin-detail.module';
-import { SectioinModule } from './sectioin/sectioin.module';
+
 import { ParcelleModule } from './parcelle/parcelle.module';
 import { UserModule } from './user/user.module';
 import { CampagneModule } from './campagne/campagne.module';
@@ -19,6 +18,7 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { ConfigModule } from '@nestjs/config';
 import { OperationsModule } from './operations/operations.module';
+import { SectionModule } from './section/section.module';
 
 @Module({
   imports: [
@@ -27,14 +27,14 @@ import { OperationsModule } from './operations/operations.module';
     ProducteurModule,
     VarieteModule,
     UniteModule,
-    SectioinDetailModule,
-    SectioinModule,
+    SectionModule,
     ParcelleModule,
     UserModule,
     CampagneModule,
     BlocModule,
     AuthModule,
     OperationsModule,
+    SectionModule,
   ],
 
   controllers: [AppController],

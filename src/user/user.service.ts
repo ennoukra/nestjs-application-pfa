@@ -51,4 +51,11 @@ export class UserService {
   findUserQuery(query: any) {
     return this.userRepository.find({ where: query });
   }
+
+  findUserWithProducteur(user): Promise<User[]> {
+    return this.userRepository.find({
+      relations: ['producters'],
+      where: { id: user.id },
+    });
+  }
 }
