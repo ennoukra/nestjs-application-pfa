@@ -19,6 +19,7 @@ import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { ConfigModule } from '@nestjs/config';
 import { OperationsModule } from './operations/operations.module';
 import { SectionModule } from './section/section.module';
+import { TypeOperationModule } from './type-operation/type-operation.module';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { SectionModule } from './section/section.module';
     AuthModule,
     OperationsModule,
     SectionModule,
+    TypeOperationModule,
   ],
 
   controllers: [AppController],
