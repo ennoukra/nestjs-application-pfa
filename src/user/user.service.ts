@@ -68,4 +68,14 @@ export class UserService {
       .where({ id: user.id })
       .getMany();
   }
+
+  async getEmployeesByUser(user) {
+    return await this.userRepository
+      .createQueryBuilder('user')
+      .leftJoinAndSelect('user.producters', 'producters')
+      .leftJoinAndSelect('producters.unites', 'unites')
+      .leftJoinAndSelect('unites.employees', 'employees')
+      .where({ id: user.id })
+      .getMany();
+  }
 }
