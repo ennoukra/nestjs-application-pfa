@@ -20,6 +20,7 @@ import { ConfigModule } from '@nestjs/config';
 import { OperationsModule } from './operations/operations.module';
 import { SectionModule } from './section/section.module';
 import { TypeOperationModule } from './type-operation/type-operation.module';
+import { EmployeeModule } from './employee/employee.module';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { TypeOperationModule } from './type-operation/type-operation.module';
     OperationsModule,
     SectionModule,
     TypeOperationModule,
+    EmployeeModule,
   ],
 
   controllers: [AppController],

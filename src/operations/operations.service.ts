@@ -15,9 +15,11 @@ export class OperationsService {
 
   getAllOperations(user) {
     console.log(user.id);
-    return this.operationRepository.find({
-      where: { creatPar: { id: user.id } },
-    });
+    return this.operationRepository
+      .createQueryBuilder('operation')
+      .leftJoinAndSelect('operation.typeOperation', 'typeOperation')
+      .where({ creatPar: user.id })
+      .getMany();
   }
 
   create(operation) {

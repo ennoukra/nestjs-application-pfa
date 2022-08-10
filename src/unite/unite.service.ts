@@ -32,6 +32,6 @@ export class UniteService {
   }
 
   async findByQuery(query: any) {
-    return this.uniteRepository.find({ where: query });
+    return this.uniteRepository.find({ relations: ['sections'], where: query });
   }
 }

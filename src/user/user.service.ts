@@ -58,4 +58,14 @@ export class UserService {
       where: { id: user.id },
     });
   }
+
+  async getSectionsByUser(user) {
+    return await this.userRepository
+      .createQueryBuilder('user')
+      .leftJoinAndSelect('user.producters', 'producters')
+      .leftJoinAndSelect('producters.unites', 'unites')
+      .leftJoinAndSelect('unites.sections', 'sections')
+      .where({ id: user.id })
+      .getMany();
+  }
 }

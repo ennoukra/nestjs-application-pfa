@@ -18,27 +18,21 @@ export class SectionService {
   // this method select all the sections that have relation with the user logedIn
   //TODO: fix this method
   async getOperationsByUserId(user) {
-    let producters: Producteur[] = [];
+    let producters: any[] = [];
     let unites: Unite[] = [];
     let sections: any[] = [];
 
-    await this.userService.findUserWithProducteur(user).then(async (users) => {
-      producters = users[0].producters;
+    this.userService.findUserWithProducteur(user).then((res) => {
+      producters = res;
+      producters[0].producters.forEach((element) => {
+        this.uniteService
+          .findByQuery({ 'producteur.id': element.id })
+          .then((res) => {
+            unites.push(...res);
+            console.log(unites[0].sections);
+          });
+      });
+      console.log("i'm here", unites);
     });
-
-    return producters.map(
-      async (producteur) =>
-        await this.uniteService
-          .findByQuery({ 'producteur.id': producteur.id })
-          .then(async (unite) => {
-            unite.forEach((unite) => {
-              this.sectionRepository.find({ where: { unite: unite } });
-            });
-            //   sections = [{ id: 1, Code: 'c12' }];
-          }),
-    );
-
-    console.log(sections);
-    return sections;
   }
 }

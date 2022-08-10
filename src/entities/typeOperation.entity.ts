@@ -10,6 +10,6 @@ export class TypeOperation {
   @Column()
   title: string;
 
-  @OneToMany(() => Operation, (operation) => operation.TypeOperation)
+  @OneToMany(() => Operation, (operation) => operation.typeOperation)
   operations: Operation[];
 }

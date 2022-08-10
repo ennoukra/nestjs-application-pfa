@@ -13,9 +13,6 @@ export class Operation {
   date: Date;
 
   @Column()
-  TypeOperation: string;
-
-  @Column()
   Description: string;
 
   @Column()
