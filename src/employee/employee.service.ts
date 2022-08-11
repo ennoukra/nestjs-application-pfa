@@ -22,4 +22,9 @@ export class EmployeeService {
     });
     return employees;
   }
+
+  async createEmployee(employee) {
+    console.log(employee);
+    return await this.employeeRepository.save(employee);
+  }
 }

@@ -7,7 +7,9 @@ import {
   ParseIntPipe,
   Post,
   Query,
+  UseGuards,
 } from '@nestjs/common';
+import { JwtAuthGuard } from 'src/auth/guard/jwtAuth.guard';
 import { Unite } from 'src/entities/Unite.entity';
 import { CreateUniteDto } from './dto/createUniteDto';
 import { UpdateUniteDto } from './dto/updateUniteDto';
@@ -17,6 +19,7 @@ import { UniteService } from './unite.service';
 export class UniteController {
   constructor(private uniteService: UniteService) {}
 
+  @UseGuards(JwtAuthGuard)
   @Get('')
   async getAllUnite(): Promise<Unite[]> {
     return await this.uniteService.getAllUnite();
