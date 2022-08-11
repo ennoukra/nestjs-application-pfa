@@ -21,6 +21,7 @@ import { OperationsModule } from './operations/operations.module';
 import { SectionModule } from './section/section.module';
 import { TypeOperationModule } from './type-operation/type-operation.module';
 import { EmployeeModule } from './employee/employee.module';
+import { FonctionModule } from './fonction/fonction.module';
 
 @Module({
   imports: [
@@ -39,6 +40,7 @@ import { EmployeeModule } from './employee/employee.module';
     SectionModule,
     TypeOperationModule,
     EmployeeModule,
+    FonctionModule,
   ],
 
   controllers: [AppController],
