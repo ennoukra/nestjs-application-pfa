@@ -25,4 +25,19 @@ export class OperationsService {
   create(operation) {
     return this.operationRepository.save(operation);
   }
+
+  async getNumberOfOperationsCreatedToday(user) {
+    let today = new Date().toLocaleDateString();
+    let todaySpliteDate = today.split('/');
+    today =
+      todaySpliteDate[2] + '-' + todaySpliteDate[1] + '-' + todaySpliteDate[0];
+
+    return await this.operationRepository
+      .createQueryBuilder('operation')
+      .where({
+        creatPar: user.id,
+      })
+      .andWhere('operation.date >= :today', { today: today })
+      .getMany();
+  }
 }

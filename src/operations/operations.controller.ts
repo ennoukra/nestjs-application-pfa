@@ -29,4 +29,14 @@ export class OperationsController {
     console.log(data.operation);
     this.operationService.create(data.operation);
   }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('numberOfOperationCreatedToday')
+  getNumberOfOperationCreatedToday(@Body() data) {
+    return this.operationService
+      .getNumberOfOperationsCreatedToday(data.user)
+      .then((res) => {
+        return res.length;
+      });
+  }
 }
