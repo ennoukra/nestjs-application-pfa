@@ -13,7 +13,7 @@ export class MainOeuvre {
   id: number;
 
   @ManyToOne(() => Employee, (employee) => employee.mainOeuvres)
-  employee: Employee[];
+  employee: Employee;
 
   @ManyToOne(() => Section, (section) => section.mainOeuvres)
   section: Section;

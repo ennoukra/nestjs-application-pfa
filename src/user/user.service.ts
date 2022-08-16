@@ -1,7 +1,9 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Certificate } from 'crypto';
+import { Producteur } from 'src/entities/Producteur.entity';
 import { User } from 'src/entities/User.entity';
+import { ProducteurService } from 'src/producteur/producteur.service';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -77,5 +79,21 @@ export class UserService {
       .leftJoinAndSelect('unites.employees', 'employees')
       .where({ id: user.id })
       .getMany();
+  }
+
+  async getUniteByUserLogedIn(user) {
+    return await this.userRepository
+      .createQueryBuilder('user')
+      .leftJoinAndSelect('user.producters', 'producters')
+      .leftJoinAndSelect('producters.unites', 'unites')
+      .where({ id: user.id })
+      .getOne()
+      .then((user) => {
+        let unites = [];
+        user.producters.forEach((producteur) => {
+          unites.push(...producteur.unites);
+        });
+        return unites;
+      });
   }
 }
