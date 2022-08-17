@@ -7,6 +7,8 @@ import {
 } from 'typeorm';
 import { Employee } from './employee.entity';
 import { Section } from './Section.entity';
+import { TypeCalcule } from './typeCalcule.entity';
+import { TypeOperation } from './typeOperation.entity';
 @Entity()
 export class MainOeuvre {
   @PrimaryGeneratedColumn()
@@ -18,13 +20,13 @@ export class MainOeuvre {
   @ManyToOne(() => Section, (section) => section.mainOeuvres)
   section: Section;
 
-  @Column()
-  typeOperation: string;
+  @ManyToOne(() => TypeOperation, (typeOperation) => typeOperation.mainOeuvres)
+  typeOperation: TypeOperation;
 
   @Column()
   date: Date;
 
-  @Column()
+  @ManyToOne(() => TypeCalcule, (typeCalucle) => typeCalucle.mainOeuvres)
   typeCalcule: string;
 
   @Column('double')
