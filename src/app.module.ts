@@ -23,6 +23,7 @@ import { TypeOperationModule } from './type-operation/type-operation.module';
 import { EmployeeModule } from './employee/employee.module';
 import { FonctionModule } from './fonction/fonction.module';
 import { TypeCalculeModule } from './type-calcule/type-calcule.module';
+import { MainOeuvreModule } from './main-oeuvre/main-oeuvre.module';
 
 @Module({
   imports: [
@@ -43,6 +44,7 @@ import { TypeCalculeModule } from './type-calcule/type-calcule.module';
     EmployeeModule,
     FonctionModule,
     TypeCalculeModule,
+    MainOeuvreModule,
   ],
 
   controllers: [AppController],
