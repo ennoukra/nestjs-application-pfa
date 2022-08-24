@@ -1,3 +1,5 @@
+import { Transform } from 'class-transformer';
+import moment from 'moment';
 import {
   Column,
   Entity,
@@ -9,6 +11,8 @@ import { Employee } from './employee.entity';
 import { Section } from './Section.entity';
 import { TypeCalcule } from './typeCalcule.entity';
 import { TypeOperation } from './typeOperation.entity';
+
+// import * as moment from 'moment';
 @Entity()
 export class MainOeuvre {
   @PrimaryGeneratedColumn()
@@ -23,6 +27,7 @@ export class MainOeuvre {
   @ManyToOne(() => TypeOperation, (typeOperation) => typeOperation.mainOeuvres)
   typeOperation: TypeOperation;
 
+  // @Transform((date) => moment(date).format('DD/MM/YY'))
   @Column()
   date: Date;
 
